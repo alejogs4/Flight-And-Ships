@@ -13,7 +13,8 @@ public class MyWorld extends World
      * Constructor for objects of class MyWorld.
      * 
      */
-
+    private static final int INTERVALOS=100;
+    private int contRemolinos=0;
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -24,7 +25,13 @@ public class MyWorld extends World
         
     }
 
-
+    public void aparecerRemolino()
+    {
+        Remolinos remolino = new Remolinos();  
+        int x= Greenfoot.getRandomNumber(getWidth());
+        int y = Greenfoot.getRandomNumber(getHeight());
+        addObject(remolino,x,y);
+    }
 
     /**
      * Prepare the world for the start of the program.
@@ -46,8 +53,21 @@ public class MyWorld extends World
         Avion avion5 = new Avion();
         addObject(avion5,56,51);
     }
-    public void act()
+    
+        public void act() 
     {
-       
+        if(contRemolinos>=INTERVALOS)
+        {
+            aparecerRemolino();
+            contRemolinos = 0;
+        }
+        else
+        {
+            contRemolinos++;
+        }
+        
+
+     
     }
+    
 }

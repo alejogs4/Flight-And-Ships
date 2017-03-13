@@ -44,7 +44,18 @@ public class Barco extends Actor
         setRotation(90);
         setLocation(x-VELOCIDAD,y);
     }
-
+    
+    public void rotarRemolino()
+    {
+        Actor remolino = getOneObjectAtOffset(0,0,Remolinos.class);
+        World w = getWorld();
+        if(remolino != null)
+        {
+            this.turn(180);
+           
+        }
+        
+    }
     
     public void act() 
     {
@@ -65,5 +76,6 @@ public class Barco extends Actor
         {
             rotarYMoverIzquierda();
         }
+        rotarRemolino();
     }    
 }
