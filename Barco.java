@@ -56,7 +56,15 @@ public class Barco extends Actor
         }
         
     }
-    
+    public void rescatarSobreviviente()
+    {
+        Actor persona = getOneObjectAtOffset(0,0,Sobrevivientes.class);
+        if(persona != null)
+        {
+            getWorld().removeObject(persona);
+        }
+    }
+        
     public void act() 
     {
         if(Greenfoot.isKeyDown("up"))
@@ -77,5 +85,6 @@ public class Barco extends Actor
             rotarYMoverIzquierda();
         }
         rotarRemolino();
+        rescatarSobreviviente();
     }    
 }

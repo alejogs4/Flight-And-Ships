@@ -13,8 +13,10 @@ public class MyWorld extends World
      * Constructor for objects of class MyWorld.
      * 
      */
-    private static final int INTERVALOS=100;
-    private int contRemolinos=0;
+    private static final int INTERVALOS=200;
+    private static final int INTERVALO_SOBREVIVIENTE=100;
+    private int contIntervalos=0;
+    private int intervaloSobreviviente=0;
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -30,7 +32,39 @@ public class MyWorld extends World
         Remolinos remolino = new Remolinos();  
         int x= Greenfoot.getRandomNumber(getWidth());
         int y = Greenfoot.getRandomNumber(getHeight());
-        addObject(remolino,x,y);
+        
+        if(contIntervalos>=INTERVALOS)
+        {
+            addObject(remolino,x,y);
+            contIntervalos = 0;
+        }
+        else
+        {
+            contIntervalos++;
+        }
+
+        
+
+        
+    }
+    public void aparecerSobreviviente()
+    {
+        Sobrevivientes persona = new Sobrevivientes();  
+        int x= Greenfoot.getRandomNumber(getWidth());
+        int y = Greenfoot.getRandomNumber(getHeight());
+        
+        if(intervaloSobreviviente>=INTERVALO_SOBREVIVIENTE)
+        {
+            addObject(persona,x,y);
+            intervaloSobreviviente = 0;
+        }
+        else
+        {
+            intervaloSobreviviente++;
+        }
+          
+
+        
     }
 
     /**
@@ -56,18 +90,8 @@ public class MyWorld extends World
     
         public void act() 
     {
-        if(contRemolinos>=INTERVALOS)
-        {
-            aparecerRemolino();
-            contRemolinos = 0;
-        }
-        else
-        {
-            contRemolinos++;
-        }
-        
-
-     
+        aparecerRemolino();  
+        aparecerSobreviviente();
     }
     
 }
