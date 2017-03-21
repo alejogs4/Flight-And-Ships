@@ -15,8 +15,10 @@ public class MyWorld extends World
      */
     private static final int INTERVALOS=200;
     private static final int INTERVALO_SOBREVIVIENTE=100;
+    private static final int INTERVALO_MUNICIONES=150;
     private int contIntervalos=0;
     private int intervaloSobreviviente=0;
+    private int intervaloMuniciones=0;
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -26,13 +28,28 @@ public class MyWorld extends World
         prepare();
         
     }
+        public void mostrarMuniciones()
+    {
+        Municiones municion= new Municiones();
+        int w = Greenfoot.getRandomNumber(getWidth());
+        int h = Greenfoot.getRandomNumber(getHeight());
+        if(intervaloMuniciones>=INTERVALO_MUNICIONES)
+        {
+            addObject(municion,w,h);
+            intervaloMuniciones=0;
+        }
+        else
+        {
+            intervaloMuniciones++;
+        }
+        
+    }
 
     public void aparecerRemolino()
     {
         Remolinos remolino = new Remolinos();  
         int x= Greenfoot.getRandomNumber(getWidth());
-        int y = Greenfoot.getRandomNumber(getHeight());
-        
+        int y = Greenfoot.getRandomNumber(getHeight());        
         if(contIntervalos>=INTERVALOS)
         {
             addObject(remolino,x,y);
@@ -42,9 +59,6 @@ public class MyWorld extends World
         {
             contIntervalos++;
         }
-
-        
-
         
     }
     public void aparecerSobreviviente()
@@ -92,6 +106,7 @@ public class MyWorld extends World
     {
         aparecerRemolino();  
         aparecerSobreviviente();
+        mostrarMuniciones();
     }
     
 }
