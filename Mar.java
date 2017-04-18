@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class MyWorld extends World
+public class Mar extends World
 {
 
     /**
@@ -14,19 +14,28 @@ public class MyWorld extends World
      * 
      */
     private static final int INTERVALOS=200;
-    private static final int INTERVALO_SOBREVIVIENTE=100;
-    private static final int INTERVALO_MUNICIONES=150;
+    private static final int INTERVALO_SOBREVIVIENTE=150;
+    private static final int INTERVALO_MUNICIONES=210;
+    
     private int contIntervalos=0;
     private int intervaloSobreviviente=0;
     private int intervaloMuniciones=0;
-    public MyWorld()
+    private int x=800;
+    private int y = 55;
+    private int i;
+    
+    private Barco barco = new Barco();
+    private Vidas corazon = new Vidas();   
+    GreenfootSound sonido = new GreenfootSound("fondo.mp3");
+    public Mar()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(120, 60, 10); 
+        super(1100, 600, 1); 
         setBackground("tile_73.png");
-        Greenfoot.playSound("fondo.mp3"); 
+        
         prepare();
         
+
     }
         public void mostrarMuniciones()
     {
@@ -44,8 +53,19 @@ public class MyWorld extends World
         }
         
     }
-
-    public void aparecerRemolino()
+    public void mostrarVidas()
+    {
+        for (i=0;i<=barco.getVidas()-1;i++)
+        {
+            addObject(new Vidas(),x,y);
+            x = x+100;
+        }
+    }
+    public void reproducirSonido()
+    {
+        sonido.playLoop();
+    }
+     public void aparecerRemolino()
     {
         Remolinos remolino = new Remolinos();  
         int x= Greenfoot.getRandomNumber(getWidth());
@@ -89,17 +109,17 @@ public class MyWorld extends World
     {
 
         Barco barco = new Barco();
-        addObject(barco,5,29);
+        addObject(barco,60,282);
         Avion avion = new Avion();
-        addObject(avion,20,12);
+        addObject(avion,365,179);
         Avion avion2 = new Avion();
-        addObject(avion2,31,33);
+        addObject(avion2,556,386);
         Avion avion3 = new Avion();
-        addObject(avion3,55,12);
+        addObject(avion3,687,187);
         Avion avion4 = new Avion();
-        addObject(avion4,14,48);
+        addObject(avion4,810,390);
         Avion avion5 = new Avion();
-        addObject(avion5,56,51);
+        addObject(avion5,363,394);
     }
     
         public void act() 
@@ -107,6 +127,7 @@ public class MyWorld extends World
         aparecerRemolino();  
         aparecerSobreviviente();
         mostrarMuniciones();
+        reproducirSonido();
     }
     
 }

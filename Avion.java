@@ -6,48 +6,66 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Avion extends Actor
+public class Avion extends Obstaculos
 {
-    private static final int VELOCIDAD=2;
-    
-     Explosion explosion= new Explosion();
-    public void bombardearBarco()
-    {
-        Actor barco=getOneObjectAtOffset(0,0,Barco.class);
-        World world= getWorld();
-        if(barco != null)
-        {
-            world.removeObject(barco);
-            world.addObject(explosion,getX(),getY());
-            Greenfoot.playSound("explosion.mp3");
-            Greenfoot.stop();
-        }
-    }
+    private static final int VELOCIDAD=6;
+    World w= getWorld();
+     
+
     public void moverAviones()
     {
-        move(2);
+        move(VELOCIDAD);
         World w= getWorld();
-       if(getX()>=w.getWidth()-5||getX()<=5)
+        
+       if(estaEnLosBordesLaterales())
        {
-            turn(180);
+            darMediaVuelta();
             if(Greenfoot.getRandomNumber(100)<90)
             {
                 turn(Greenfoot.getRandomNumber(45));
             }
        }
-       if(getY()>=w.getHeight()-5||getY()<=5)
+       if(estaEnLaParteInferiorOSuperior())
        {
-            turn(180);
+            darMediaVuelta();
             if(Greenfoot.getRandomNumber(100)<90)
             {
                 turn(Greenfoot.getRandomNumber(45));
             }
        }
+    }
+    public boolean estaEnLosBordesLaterales()
+    {
+        World w= getWorld();
+        if(getX()>=w.getWidth()-getImage().getWidth()/2||getX()<=5)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public boolean estaEnLaParteInferiorOSuperior()
+    {
+        World w= getWorld();
+        if(getY()>=w.getHeight()-5||getY()<=5)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public void darMediaVuelta()
+    {
+        turn(180);
     }
     
     public void act() 
     {
-        moverAviones();
-        bombardearBarco();
+        moverAviones();        
     }    
 }

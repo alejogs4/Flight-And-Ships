@@ -8,14 +8,52 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Barco extends Actor
 {
-    private int vidas = 3;
     private int sobrevivientes_rescatados=0;
     private int puntaje=0;
     private double combustible;
-    private  static final int VELOCIDAD=1; 
-    
-    
+    private int vidas=3;
 
+    private  static final int VELOCIDAD=5;
+    
+    
+   
+    public void moverBarco()
+    {
+        if(estaPresionadaLaTeclaUp())
+        {
+            rotarYMoverAdelante();
+        }
+        else if(estaPresionadaLaTeclaDown())
+        {
+            rotarYMoverAtras();
+        }
+        
+        if(estaPresionadaLaTeclaRight())
+        {
+            rotarYMoverDerecha();
+        }
+        else if(estaPresionadaLaTeclaLeft())
+        {
+            rotarYMoverIzquierda();
+        }
+    }
+    public boolean estaPresionadaLaTeclaUp()
+    {
+        return Greenfoot.isKeyDown("up");
+    }
+    public boolean estaPresionadaLaTeclaDown()
+    {
+        return Greenfoot.isKeyDown("down");
+    }
+    public boolean estaPresionadaLaTeclaRight()
+    {
+        return Greenfoot.isKeyDown("right");
+    }
+    public boolean estaPresionadaLaTeclaLeft()
+    {
+        return Greenfoot.isKeyDown("left");
+    }
+    
     public void rotarYMoverAdelante()
     {
         int x= getX();
@@ -62,29 +100,43 @@ public class Barco extends Actor
         if(persona != null)
         {
             getWorld().removeObject(persona);
+            puntaje= puntaje+5;
         }
     }
-        
+    public String asignarPuntaje()
+    {
+        return "Puntaje"+" : "+puntaje;
+    }
+    public void mostrarPuntaje()
+    {
+        World w = getWorld();
+        w.showText(asignarPuntaje(),55,25);
+    }
+
+    public void bombardearBarco()
+    {
+        Actor barco =getOneObjectAtOffset(0,0,Obstaculos.class);
+        Explosion explosion= new Explosion();
+        World world= getWorld();
+        if(barco != null)
+        {
+            world.removeObject(barco);
+            world.addObject(explosion,getX(),getY());
+            Greenfoot.playSound("explosion.mp3");
+            vidas--;
+            Greenfoot.stop();
+        }
+    }
+    public int getVidas()
+    {
+        return vidas;
+    }
     public void act() 
     {
-        if(Greenfoot.isKeyDown("up"))
-        {
-            rotarYMoverAdelante();
-        }
-        else if(Greenfoot.isKeyDown("down"))
-        {
-            rotarYMoverAtras();
-        }
-        
-        if(Greenfoot.isKeyDown("right"))
-        {
-            rotarYMoverDerecha();
-        }
-        else if(Greenfoot.isKeyDown("left"))
-        {
-            rotarYMoverIzquierda();
-        }
+        mostrarPuntaje();
+        moverBarco();
         rotarRemolino();
         rescatarSobreviviente();
+        bombardearBarco();
     }    
 }
