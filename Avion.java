@@ -22,7 +22,7 @@ public class Avion extends Obstaculos
             darMediaVuelta();
             if(Greenfoot.getRandomNumber(100)<90)
             {
-                turn(Greenfoot.getRandomNumber(45));
+                rotarAleatoriamente();
             }
        }
        if(estaEnLaParteInferiorOSuperior())
@@ -30,7 +30,7 @@ public class Avion extends Obstaculos
             darMediaVuelta();
             if(Greenfoot.getRandomNumber(100)<90)
             {
-                turn(Greenfoot.getRandomNumber(45));
+                rotarAleatoriamente();
             }
        }
     }
@@ -63,9 +63,14 @@ public class Avion extends Obstaculos
     {
         turn(180);
     }
+    public void rotarAleatoriamente()
+    {
+        turn(Greenfoot.getRandomNumber(45));
+    }
     
     public void act() 
     {
         moverAviones();        
+        bombardearBarco();
     }    
 }

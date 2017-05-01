@@ -8,15 +8,20 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Barco extends Actor
 {
-    private int sobrevivientes_rescatados=0;
-    private int puntaje=0;
+    private int sobrevivientes_rescatados;
+    private int puntaje;
     private double combustible;
     private int vidas=3;
-
-    private  static final int VELOCIDAD=5;
-    
-    
-   
+    private int time;
+    private int intervalo_tiempo;
+    private  static final int VELOCIDAD=5; 
+    public Barco()
+    {
+       time = 40;
+       puntaje=0;
+       sobrevivientes_rescatados=0;
+       intervalo_tiempo=0;
+    }
     public void moverBarco()
     {
         if(estaPresionadaLaTeclaUp())
@@ -82,18 +87,6 @@ public class Barco extends Actor
         setRotation(90);
         setLocation(x-VELOCIDAD,y);
     }
-    
-    public void rotarRemolino()
-    {
-        Actor remolino = getOneObjectAtOffset(0,0,Remolinos.class);
-        World w = getWorld();
-        if(remolino != null)
-        {
-            this.turn(180);
-           
-        }
-        
-    }
     public void rescatarSobreviviente()
     {
         Actor persona = getOneObjectAtOffset(0,0,Sobrevivientes.class);
@@ -112,20 +105,38 @@ public class Barco extends Actor
         World w = getWorld();
         w.showText(asignarPuntaje(),55,25);
     }
-
-    public void bombardearBarco()
+    public String asignarTiempo()
     {
-        Actor barco =getOneObjectAtOffset(0,0,Obstaculos.class);
-        Explosion explosion= new Explosion();
-        World world= getWorld();
-        if(barco != null)
+        return "Tiempo: "+time;
+    }
+    public void mostrarTiempo()
+    {
+        World w = getWorld();
+        w.showText(asignarTiempo(),1000,25);
+    }
+    public void correrTiempo()
+    {
+        if(intervalo_tiempo==50)
         {
-            world.removeObject(barco);
-            world.addObject(explosion,getX(),getY());
-            Greenfoot.playSound("explosion.mp3");
-            vidas--;
-            Greenfoot.stop();
+            time--;
+            intervalo_tiempo=0;
         }
+        else
+        {
+            intervalo_tiempo++;
+        }
+    }
+    
+    public void cargarSegundoNivel()
+    {
+        if(tieneParaPasarAlSegundoNivel())
+        {
+            Greenfoot.setWorld(new SegundaPantalla());
+        }
+    }
+    public boolean tieneParaPasarAlSegundoNivel()
+    {
+        return this.puntaje>40;
     }
     public int getVidas()
     {
@@ -133,10 +144,12 @@ public class Barco extends Actor
     }
     public void act() 
     {
+        correrTiempo();
         mostrarPuntaje();
+        mostrarTiempo();
         moverBarco();
-        rotarRemolino();
         rescatarSobreviviente();
-        bombardearBarco();
+        cargarSegundoNivel();
+
     }    
 }

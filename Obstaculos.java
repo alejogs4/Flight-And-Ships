@@ -8,12 +8,24 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Obstaculos extends Actor
 {
-    /**
-     * Act - do whatever the Obstaculos wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+        public void bombardearBarco()
+    {
+        Actor barco =getOneObjectAtOffset(0,0,Barco.class);
+        Explosion explosion= new Explosion();
+        World world= getWorld();
+        Mar mar = getWorldOfType(Mar.class);
+        if(barco != null)
+        {
+            world.removeObject(barco);
+            world.addObject(explosion,getX(),getY());
+            mar.detenerSonido();
+            Greenfoot.playSound("explosion.mp3");
+            Greenfoot.stop();
+        }
+    }
+
     public void act() 
     {
-        // Add your action code here.
+        bombardearBarco();
     }    
 }

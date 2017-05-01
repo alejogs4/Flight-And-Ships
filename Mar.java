@@ -25,19 +25,17 @@ public class Mar extends World
     private int i;
     
     private Barco barco = new Barco();
-    private Vidas corazon = new Vidas();   
-    GreenfootSound sonido = new GreenfootSound("fondo.mp3");
+    private Vidas corazon = new Vidas();
+    GreenfootSound sonido;    
+
     public Mar()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1100, 600, 1); 
         setBackground("tile_73.png");
-        
-        prepare();
-        
-
+        sonido = new GreenfootSound("fondo.mp3");
+        prepare();       
     }
-        public void mostrarMuniciones()
+    public void mostrarMuniciones()
     {
         Municiones municion= new Municiones();
         int w = Greenfoot.getRandomNumber(getWidth());
@@ -65,28 +63,15 @@ public class Mar extends World
     {
         sonido.playLoop();
     }
-     public void aparecerRemolino()
+    public void detenerSonido()
     {
-        Remolinos remolino = new Remolinos();  
-        int x= Greenfoot.getRandomNumber(getWidth());
-        int y = Greenfoot.getRandomNumber(getHeight());        
-        if(contIntervalos>=INTERVALOS)
-        {
-            addObject(remolino,x,y);
-            contIntervalos = 0;
-        }
-        else
-        {
-            contIntervalos++;
-        }
-        
+        sonido.stop();
     }
     public void aparecerSobreviviente()
     {
         Sobrevivientes persona = new Sobrevivientes();  
         int x= Greenfoot.getRandomNumber(getWidth());
-        int y = Greenfoot.getRandomNumber(getHeight());
-        
+        int y = Greenfoot.getRandomNumber(getHeight());        
         if(intervaloSobreviviente>=INTERVALO_SOBREVIVIENTE)
         {
             addObject(persona,x,y);
@@ -95,10 +80,7 @@ public class Mar extends World
         else
         {
             intervaloSobreviviente++;
-        }
-          
-
-        
+        }               
     }
 
     /**
@@ -123,11 +105,13 @@ public class Mar extends World
     }
     
         public void act() 
-    {
-        aparecerRemolino();  
+    { 
         aparecerSobreviviente();
         mostrarMuniciones();
-        reproducirSonido();
+        if(!sonido.isPlaying())
+        {
+            reproducirSonido();
+        }
     }
     
 }
