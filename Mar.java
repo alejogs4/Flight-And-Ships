@@ -6,59 +6,27 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Mar extends World
+public class Mar extends Mundos
 {
-
-    /**
-     * Constructor for objects of class MyWorld.
-     * 
-     */
     private static final int INTERVALOS=200;
-    private static final int INTERVALO_SOBREVIVIENTE=150;
-    private static final int INTERVALO_MUNICIONES=210;
+
     
     private int contIntervalos=0;
-    private int intervaloSobreviviente=0;
-    private int intervaloMuniciones=0;
     private int x=800;
     private int y = 55;
     private int i;
     
     private Barco barco = new Barco();
-    private Vidas corazon = new Vidas();
     GreenfootSound sonido;    
 
     public Mar()
-    {    
-        super(1100, 600, 1); 
+    {            
         setBackground("tile_73.png");
         sonido = new GreenfootSound("fondo.mp3");
         prepare();       
     }
-    public void mostrarMuniciones()
-    {
-        Municiones municion= new Municiones();
-        int w = Greenfoot.getRandomNumber(getWidth());
-        int h = Greenfoot.getRandomNumber(getHeight());
-        if(intervaloMuniciones>=INTERVALO_MUNICIONES)
-        {
-            addObject(municion,w,h);
-            intervaloMuniciones=0;
-        }
-        else
-        {
-            intervaloMuniciones++;
-        }
-        
-    }
-    public void mostrarVidas()
-    {
-        for (i=0;i<=barco.getVidas()-1;i++)
-        {
-            addObject(new Vidas(),x,y);
-            x = x+100;
-        }
-    }
+
+
     public void reproducirSonido()
     {
         sonido.playLoop();
@@ -67,21 +35,7 @@ public class Mar extends World
     {
         sonido.stop();
     }
-    public void aparecerSobreviviente()
-    {
-        Sobrevivientes persona = new Sobrevivientes();  
-        int x= Greenfoot.getRandomNumber(getWidth());
-        int y = Greenfoot.getRandomNumber(getHeight());        
-        if(intervaloSobreviviente>=INTERVALO_SOBREVIVIENTE)
-        {
-            addObject(persona,x,y);
-            intervaloSobreviviente = 0;
-        }
-        else
-        {
-            intervaloSobreviviente++;
-        }               
-    }
+
 
     /**
      * Prepare the world for the start of the program.
@@ -104,14 +58,15 @@ public class Mar extends World
         addObject(avion5,363,394);
     }
     
+    
         public void act() 
     { 
         aparecerSobreviviente();
         mostrarMuniciones();
-        if(!sonido.isPlaying())
+        /*if(!sonido.isPlaying())
         {
             reproducirSonido();
-        }
+        }*/
     }
     
 }

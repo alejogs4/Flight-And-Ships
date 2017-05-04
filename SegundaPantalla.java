@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class SegundaPantalla extends World
+public class SegundaPantalla extends Mundos
 {
 
     /**
@@ -15,7 +15,12 @@ public class SegundaPantalla extends World
      */
     public SegundaPantalla()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(1100, 600, 1); 
+        
+         
+    }
+    public void act()
+    {
+        aparecerSobreviviente();
+        mostrarMuniciones();
     }
 }

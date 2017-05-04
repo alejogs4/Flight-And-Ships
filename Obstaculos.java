@@ -8,11 +8,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Obstaculos extends Actor
 {
-        public void bombardearBarco()
+    public void bombardearBarco()
     {
         Actor barco =getOneObjectAtOffset(0,0,Barco.class);
         Explosion explosion= new Explosion();
         World world= getWorld();
+        Barco b = new Barco();
         Mar mar = getWorldOfType(Mar.class);
         if(barco != null)
         {
@@ -20,10 +21,9 @@ public class Obstaculos extends Actor
             world.addObject(explosion,getX(),getY());
             mar.detenerSonido();
             Greenfoot.playSound("explosion.mp3");
-            Greenfoot.stop();
+            world.addObject(new Perdiste(),world.getWidth()/2,world.getHeight()/2);
         }
     }
-
     public void act() 
     {
         bombardearBarco();

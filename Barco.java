@@ -96,6 +96,7 @@ public class Barco extends Actor
             puntaje= puntaje+5;
         }
     }
+    
     public String asignarPuntaje()
     {
         return "Puntaje"+" : "+puntaje;
@@ -130,9 +131,14 @@ public class Barco extends Actor
     public void cargarSegundoNivel()
     {
         if(tieneParaPasarAlSegundoNivel())
-        {
-            Greenfoot.setWorld(new SegundaPantalla());
+        {            
+            mostrarLetrero(new Felicitaciones());
         }
+    }
+    public void mostrarLetrero(Letreros l)
+    {
+        World w = getWorld();
+        w.addObject(l,w.getWidth()/2,w.getHeight()/2);
     }
     public boolean tieneParaPasarAlSegundoNivel()
     {

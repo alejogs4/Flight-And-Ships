@@ -15,8 +15,7 @@ public class Avion extends Obstaculos
     public void moverAviones()
     {
         move(VELOCIDAD);
-        World w= getWorld();
-        
+        World w= getWorld();        
        if(estaEnLosBordesLaterales())
        {
             darMediaVuelta();
@@ -70,7 +69,7 @@ public class Avion extends Obstaculos
     
     public void act() 
     {
-        moverAviones();        
+        moverAviones();  
         bombardearBarco();
     }    
 }
