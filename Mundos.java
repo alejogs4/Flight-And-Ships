@@ -47,4 +47,13 @@ public class Mundos extends World
             intervaloSobreviviente++;
         }               
     }
+    public void act() 
+    { 
+        aparecerSobreviviente();
+        mostrarMuniciones();
+        /*if(!sonido.isPlaying())
+        {
+            reproducirSonido();
+        }*/
+    }
 }

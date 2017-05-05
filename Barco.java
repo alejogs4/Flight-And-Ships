@@ -127,11 +127,25 @@ public class Barco extends Actor
             intervalo_tiempo++;
         }
     }
+	public boolean seAcaboElTiempo()
+	{
+		return time<=0;
+	}
+	public void perdioPorTiempo()
+	{
+		World w = getWorld();
+		if(seAcaboElTiempo())
+		{
+			mostrarLetrero(new Perdiste());
+			w.removeObject(this);
+		}
+	}
     
     public void cargarSegundoNivel()
     {
         if(tieneParaPasarAlSegundoNivel())
-        {            
+        {       
+			getWorld().removeObject(this);     
             mostrarLetrero(new Felicitaciones());
         }
     }
@@ -156,6 +170,7 @@ public class Barco extends Actor
         moverBarco();
         rescatarSobreviviente();
         cargarSegundoNivel();
+		perdioPorTiempo();
 
     }    
 }

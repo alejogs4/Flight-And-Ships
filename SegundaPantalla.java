@@ -18,9 +18,4 @@ public class SegundaPantalla extends Mundos
         
          
     }
-    public void act()
-    {
-        aparecerSobreviviente();
-        mostrarMuniciones();
-    }
 }

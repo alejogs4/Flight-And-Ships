@@ -56,17 +56,5 @@ public class Mar extends Mundos
         addObject(avion4,810,390);
         Avion avion5 = new Avion();
         addObject(avion5,363,394);
-    }
-    
-    
-        public void act() 
-    { 
-        aparecerSobreviviente();
-        mostrarMuniciones();
-        /*if(!sonido.isPlaying())
-        {
-            reproducirSonido();
-        }*/
-    }
-    
+    }    
 }
