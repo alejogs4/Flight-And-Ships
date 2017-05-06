@@ -11,7 +11,9 @@ public class Avion extends Obstaculos
     private static final int VELOCIDAD=6;
     World w= getWorld();
      
-
+    /**
+     * Moviemiento de los aviones 
+     */
     public void moverAviones()
     {
         move(VELOCIDAD);
@@ -33,6 +35,9 @@ public class Avion extends Obstaculos
             }
        }
     }
+    /**
+     *  Metodo que devuelve true si los aviones estan en los bordes laterales del mundo,false de caso contrario 
+     */
     public boolean estaEnLosBordesLaterales()
     {
         World w= getWorld();

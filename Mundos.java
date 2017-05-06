@@ -76,9 +76,9 @@ public class Mundos extends World
     { 
         aparecerSobreviviente();
         mostrarMuniciones();
-        /*if(!sonido.isPlaying())
+        if(!sonido.isPlaying())
         {
             reproducirSonido();
-        }*/
+        }
     }
 }
