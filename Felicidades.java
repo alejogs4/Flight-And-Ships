@@ -1,12 +1,12 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Felicitaciones here.
+ * Write a description of class Felicidades here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Felicitaciones extends Letreros
+public class Felicidades extends Letreros
 {
     public  void pasarDePantalla()
     {
@@ -14,5 +14,5 @@ public class Felicitaciones extends Letreros
         {
             Greenfoot.setWorld(new SegundaPantalla());
         }
-    }
+    }   
 }

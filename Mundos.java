@@ -12,11 +12,16 @@ public class Mundos extends World
     private static final int INTERVALO_MUNICIONES=210;
     private static final int INTERVALO_SOBREVIVIENTE=150;
     private int intervaloSobreviviente=0;
+    GreenfootSound sonido;
     public Mundos()
     {    
         super(1100, 600, 1); 
+        sonido = new GreenfootSound("fondo.mp3");
     }
-        public void mostrarMuniciones()
+      /**
+     *Muestra las municiones en el mapa de forma aletoria y en cierto intervalo de tiempo. 
+     */
+    public void mostrarMuniciones()
     {
         Municiones municion= new Municiones();
         int w = Greenfoot.getRandomNumber(getWidth());
@@ -32,7 +37,11 @@ public class Mundos extends World
         }
         
     }
-        public void aparecerSobreviviente()
+    
+    /**
+     *Muestra a los sobrevivientes en el mapa de forma aletoria y en cierto intervalo de tiempo. 
+     */
+    public void aparecerSobreviviente()
     {
         Sobrevivientes persona = new Sobrevivientes();  
         int x= Greenfoot.getRandomNumber(getWidth());
@@ -46,6 +55,22 @@ public class Mundos extends World
         {
             intervaloSobreviviente++;
         }               
+    }
+    
+    /**
+     *  Metodo que reproduce el sonido de fondo del juego
+     *  @pre: El juego se debio haber iniciado antes de reproducir el sonido.
+     */
+    public void reproducirSonido()
+    {
+        sonido.playLoop();
+    }
+    /**
+     *Metodo que detiene el sonido de fondo del juego 
+     */
+    public void detenerSonido()
+    {
+        sonido.stop();
     }
     public void act() 
     { 

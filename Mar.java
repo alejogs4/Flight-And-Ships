@@ -17,26 +17,11 @@ public class Mar extends Mundos
     private int i;
     
     private Barco barco = new Barco();
-    GreenfootSound sonido;    
-
     public Mar()
     {            
         setBackground("tile_73.png");
-        sonido = new GreenfootSound("fondo.mp3");
         prepare();       
     }
-
-
-    public void reproducirSonido()
-    {
-        sonido.playLoop();
-    }
-    public void detenerSonido()
-    {
-        sonido.stop();
-    }
-
-
     /**
      * Prepare the world for the start of the program.
      * That is: create the initial objects and add them to the world.

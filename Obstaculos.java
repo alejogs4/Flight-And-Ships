@@ -14,7 +14,7 @@ public class Obstaculos extends Actor
         Explosion explosion= new Explosion();
         World world= getWorld();
         Barco b = new Barco();
-        Mar mar = getWorldOfType(Mar.class);
+        Mundos mar = getWorldOfType(Mundos.class);
         if(barco != null)
         {
             world.removeObject(barco);

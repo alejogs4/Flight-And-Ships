@@ -127,33 +127,33 @@ public class Barco extends Actor
             intervalo_tiempo++;
         }
     }
-	public boolean seAcaboElTiempo()
-	{
-		return time<=0;
-	}
-	public void perdioPorTiempo()
-	{
-		World w = getWorld();
-		if(seAcaboElTiempo())
-		{
-			mostrarLetrero(new Perdiste());
-			w.removeObject(this);
-		}
-	}
+    public boolean seAcaboElTiempo()
+    {
+        return time<=0;
+    }
+    public void perdioPorTiempo()
+    {
+        if(seAcaboElTiempo())
+        {
+            mostrarLetrero(new Perdiste());
+            getWorld().removeObject(this);
+        }
+    }
     
     public void cargarSegundoNivel()
     {
         if(tieneParaPasarAlSegundoNivel())
         {       
-			getWorld().removeObject(this);     
-            mostrarLetrero(new Felicitaciones());
+            mostrarLetrero(new Felicidades());
+            getWorld().removeObject(this); 
         }
     }
     public void mostrarLetrero(Letreros l)
     {
         World w = getWorld();
-        w.addObject(l,w.getWidth()/2,w.getHeight()/2);
+        w.addObject(l,w.getWidth()/2,w.getHeight()/2);        
     }
+
     public boolean tieneParaPasarAlSegundoNivel()
     {
         return this.puntaje>40;
@@ -170,7 +170,7 @@ public class Barco extends Actor
         moverBarco();
         rescatarSobreviviente();
         cargarSegundoNivel();
-		perdioPorTiempo();
+        perdioPorTiempo();
 
     }    
 }

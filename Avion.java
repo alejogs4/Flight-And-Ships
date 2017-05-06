@@ -36,7 +36,7 @@ public class Avion extends Obstaculos
     public boolean estaEnLosBordesLaterales()
     {
         World w= getWorld();
-        if(getX()>=w.getWidth()-getImage().getWidth()/2||getX()<=5)
+        if(getX()>=w.getWidth()-getImage().getWidth()/2||getX()<=getImage().getWidth()/2)
         {
             return true;
         }
@@ -49,7 +49,7 @@ public class Avion extends Obstaculos
     public boolean estaEnLaParteInferiorOSuperior()
     {
         World w= getWorld();
-        if(getY()>=w.getHeight()-5||getY()<=5)
+        if(getY()>=w.getHeight()-getImage().getHeight()/2||getY()<=getImage().getHeight()/2)
         {
             return true;
         }
