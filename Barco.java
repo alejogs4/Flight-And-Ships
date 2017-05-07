@@ -14,7 +14,7 @@ public class Barco extends Actor
     private int vidas=3;
     private int time;
     private int intervalo_tiempo;
-    private  static final int VELOCIDAD=5; 
+    private  static final int VELOCIDAD=5;     
     public Barco()
     {
        time = 40;
@@ -97,24 +97,31 @@ public class Barco extends Actor
         }
     }
     
-    public String asignarPuntaje()
+    public void asignarPuntaje(int puntaje)
+    {
+        this.puntaje=puntaje;
+    }
+    
+    public String setPuntaje()
     {
         return "Puntaje"+" : "+puntaje;
     }
     public void mostrarPuntaje()
     {
         World w = getWorld();
-        w.showText(asignarPuntaje(),55,25);
+        w.showText(setPuntaje(),55,25);
     }
-    public String asignarTiempo()
+    
+    public String setTiempo()
     {
         return "Tiempo: "+time;
     }
     public void mostrarTiempo()
     {
         World w = getWorld();
-        w.showText(asignarTiempo(),1000,25);
+        w.showText(setTiempo(),1000,25);
     }
+    
     public void correrTiempo()
     {
         if(intervalo_tiempo==50)
@@ -127,10 +134,7 @@ public class Barco extends Actor
             intervalo_tiempo++;
         }
     }
-    public boolean seAcaboElTiempo()
-    {
-        return time<=0;
-    }
+
     public void perdioPorTiempo()
     {
         if(seAcaboElTiempo())
@@ -139,6 +143,11 @@ public class Barco extends Actor
             getWorld().removeObject(this);
         }
     }
+    public boolean seAcaboElTiempo()
+    {
+        return time<=0;
+    }
+    
     
     public void cargarSegundoNivel()
     {
@@ -148,20 +157,31 @@ public class Barco extends Actor
             getWorld().removeObject(this); 
         }
     }
+        public boolean tieneParaPasarAlSegundoNivel()
+    {
+        return this.puntaje==40;
+    }
+    
+    
+    public void ganarJuego()
+    {
+        if(tieneParaGanarElJuego())
+        {
+            mostrarLetrero(new FelicidadesSegundoNivel());
+            getWorld().removeObject(this);
+        }
+    }    
+    public boolean tieneParaGanarElJuego()
+    {
+        return this.puntaje==100;
+    }    
+    
     public void mostrarLetrero(Letreros l)
     {
         World w = getWorld();
         w.addObject(l,w.getWidth()/2,w.getHeight()/2);        
     }
-
-    public boolean tieneParaPasarAlSegundoNivel()
-    {
-        return this.puntaje>40;
-    }
-    public int getVidas()
-    {
-        return vidas;
-    }
+    
     public void act() 
     {
         correrTiempo();
@@ -171,6 +191,6 @@ public class Barco extends Actor
         rescatarSobreviviente();
         cargarSegundoNivel();
         perdioPorTiempo();
-
+        ganarJuego();
     }    
 }

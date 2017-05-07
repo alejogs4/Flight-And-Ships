@@ -16,11 +16,13 @@ public class Mar extends Mundos
     private int y = 55;
     private int i;
     
+
     private Barco barco = new Barco();
     public Mar()
     {            
         setBackground("tile_73.png");
         prepare();       
+        
     }
     /**
      * Prepare the world for the start of the program.

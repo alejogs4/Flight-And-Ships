@@ -1,18 +1,18 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Perdiste here.
+ * Write a description of class PerdisteSegundoNivel here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Perdiste extends Letreros
+public class PerdisteSegundoNivel extends Letreros
 {
     public  void pasarDePantalla()
     {
         if(sePresionoClick())
-        {            
-                Greenfoot.setWorld(new Mar());                                    
+        {
+			Greenfoot.setWorld(new SegundaPantalla());            
         }
-    }         
+    } 
 }
