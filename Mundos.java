@@ -8,11 +8,19 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Mundos extends World
 {
-    private int intervaloMuniciones=0;
     private static final int INTERVALO_MUNICIONES=210;
     private static final int INTERVALO_SOBREVIVIENTE=150;
+    
+    private static final int CANTIDAD_REMOS=3;    
+    private static final int INTERVALO_REMOS=300;
+    private int intervaloRemos=0;
+    private int contadorAyudas=0;
+    
+    private int intervaloMuniciones=0;
     private int intervaloSobreviviente=0;
     GreenfootSound sonido;
+    protected Municiones municion;
+
     public Mundos()
     {    
         super(1100, 600, 1); 
@@ -22,8 +30,8 @@ public class Mundos extends World
      *Muestra las municiones en el mapa de forma aletoria y en cierto intervalo de tiempo. 
      */
     public void mostrarMuniciones()
-    {
-        Municiones municion= new Municiones();
+    {        
+        municion= new Municiones();
         int w = Greenfoot.getRandomNumber(getWidth());
         int h = Greenfoot.getRandomNumber(getHeight());
         if(intervaloMuniciones>=INTERVALO_MUNICIONES)
@@ -56,6 +64,26 @@ public class Mundos extends World
             intervaloSobreviviente++;
         }               
     }
+    /*public void aparecerAyudas()
+    {
+        int x = Greenfoot.getRandomNumber(getWidth());
+        int y = Greenfoot.getRandomNumber(getHeight());
+        Remos remo = new Remos();
+        if(intervaloRemos>=INTERVALO_REMOS)
+        {
+            if(contadorAyudas<=3)
+            {
+                addObject(remo,x,y);
+                intervaloRemos=0;
+                contadorAyudas++;
+            }      
+                       
+        }
+        else
+        {
+            intervaloRemos++;
+        }
+    }*/
     
     /**
      *  Metodo que reproduce el sonido de fondo del juego
@@ -76,6 +104,7 @@ public class Mundos extends World
     { 
         aparecerSobreviviente();
         mostrarMuniciones();
+        //aparecerAyudas();
         /*if(!sonido.isPlaying())
         {
             reproducirSonido();

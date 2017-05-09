@@ -14,17 +14,16 @@ public class SegundaPantalla extends Mundos
     Avion avion3 = new Avion();
     Avion avion4 = new Avion();
     Avion avion5 = new Avion();
-    Municiones municion=new Municiones();
     public SegundaPantalla()
     {    
         prepare();   
-        barco.asignarPuntaje(45);
+        barco.setPuntaje(45);
         avion.setMundo(1);
         avion2.setMundo(1);
         avion3.setMundo(1);
         avion4.setMundo(1);
         avion5.setMundo(1);
-        municion.setMundo(1);
+        //municion.setMundo(1);
     }
     
     private void prepare()
