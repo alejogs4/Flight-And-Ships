@@ -1,4 +1,9 @@
 #BlueJ class context
 comment0.target=Explosion
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ Explosion\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-numComments=1
+comment1.params=
+comment1.target=void\ act()
+comment2.params=
+comment2.target=void\ animarExplosionAvion()
+comment2.text=\ \r\n\ Anima\ la\ explosion\ del\ avion\ \r\n
+numComments=3

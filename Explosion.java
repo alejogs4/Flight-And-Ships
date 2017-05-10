@@ -8,5 +8,23 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Explosion extends Actor
 {
-   
+    private int animacion = 1;  
+    private int contAnimacion = 3;  
+    public void act() 
+    {  
+        animarExplosionAvion();  
+    }    
+    /** 
+     * Anima la explosion del avion 
+     */  
+    private void animarExplosionAvion(){  
+        if (animacion < 10){  
+            if (contAnimacion <= 0){  
+               animacion++;  
+               setImage("Explosion-"+animacion+".png");  
+               contAnimacion = 3;  
+            } 
+            contAnimacion--;  
+        }  
+    }       
 }
