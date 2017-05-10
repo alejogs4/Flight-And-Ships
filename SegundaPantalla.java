@@ -17,7 +17,7 @@ public class SegundaPantalla extends Mundos
     public SegundaPantalla()
     {    
         prepare();   
-        barco.setPuntaje(45);
+        barco.setPuntaje(65);
         avion.setMundo(1);
         avion2.setMundo(1);
         avion3.setMundo(1);
