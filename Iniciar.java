@@ -12,6 +12,7 @@ public class Iniciar extends Letreros
     {
         if(sePresionoClick())
         {
+            // Carga el primer mundo
             Greenfoot.setWorld(new Mar());
         }
     }

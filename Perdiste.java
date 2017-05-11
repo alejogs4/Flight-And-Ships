@@ -12,6 +12,7 @@ public class Perdiste extends Letreros
     {
         if(sePresionoClick())
         {            
+                //Carga el mundo
                 Greenfoot.setWorld(new Mar());                                    
         }
     }         

@@ -10,7 +10,7 @@ public class PantallaInicio extends World
 {
 
     /**
-     * Constructor for objects of class PantallaInicio.
+     * Constructor de la clase PantallaInicio.
      * 
      */
     public PantallaInicio()
@@ -20,13 +20,17 @@ public class PantallaInicio extends World
     }
 
     /**
-     * Prepare the world for the start of the program.
-     * That is: create the initial objects and add them to the world.
+     * Metodo que agrega objetos al mundo.
+     * 
      */
     private void prepare()
     {
         Iniciar iniciar = new Iniciar();
         addObject(iniciar,323,305);
-        iniciar.setLocation(309,291);
+        iniciar.setLocation(309,310);
+        Instrucciones instrucciones = new Instrucciones();
+        addObject(instrucciones,304,362);
+        instrucciones.setLocation(294,358);
+        instrucciones.setLocation(304,433);
     }
 }

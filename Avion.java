@@ -12,7 +12,7 @@ public class Avion extends Obstaculos
     World w= getWorld();
      
     /**
-     * Moviemiento de los aviones 
+     * R6:Metodo que implementa el requisito 6
      */
     public void moverAviones()
     {
@@ -21,7 +21,7 @@ public class Avion extends Obstaculos
        if(estaEnLosBordesLaterales())
        {
             darMediaVuelta();
-            if(Greenfoot.getRandomNumber(100)<90)
+            if(Greenfoot.getRandomNumber(100)<80)
             {
                 rotarAleatoriamente();
             }
@@ -29,14 +29,15 @@ public class Avion extends Obstaculos
        if(estaEnLaParteInferiorOSuperior())
        {
             darMediaVuelta();
-            if(Greenfoot.getRandomNumber(100)<90)
+            if(Greenfoot.getRandomNumber(100)<80)
             {
                 rotarAleatoriamente();
             }
        }
     }
     /**
-     *  Metodo que devuelve true si los aviones estan en los bordes laterales del mundo,false de caso contrario 
+     *  Metodo que determina si el avion esta en los bordes laterales.
+     *  @return Returna si el avion esta en los bordes laterales, false de lo contario
      */
     public boolean estaEnLosBordesLaterales()
     {
@@ -51,6 +52,10 @@ public class Avion extends Obstaculos
         }
     }
     
+     /**
+     *  Metodo que determina si el avion esta en los bordes superiores o inferiores.
+     *  @return Returna si el avion esta en los bordes superiores o inferiores, false de lo contario
+     */
     public boolean estaEnLaParteInferiorOSuperior()
     {
         World w= getWorld();
@@ -63,10 +68,18 @@ public class Avion extends Obstaculos
             return false;
         }
     }
+    /**
+     * Metodo que se encarga de darle media vuelta al avion
+     * @pre El avion esta en los bordes del mundo
+     */
     public void darMediaVuelta()
     {
         turn(180);
     }
+    /**
+     * Metodo que rota el avion aleatoriamente
+     * @pre Este metodo se ejecuta con una probabilidad del 80%
+     */
     public void rotarAleatoriamente()
     {
         turn(Greenfoot.getRandomNumber(45));

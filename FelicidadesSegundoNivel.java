@@ -12,6 +12,7 @@ public class FelicidadesSegundoNivel extends Letreros
     {
         if(sePresionoClick())
         {
+            //Carga segunda pantalla
             Greenfoot.setWorld(new PantallaInicio());
         }
     }

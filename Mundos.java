@@ -18,13 +18,12 @@ public class Mundos extends World
     
     private int intervaloMuniciones=0;
     private int intervaloSobreviviente=0;
-    GreenfootSound sonido;
+    GreenfootSound sonido= new GreenfootSound("fondo.mp3");;
     protected Municiones municion;
 
     public Mundos()
     {    
         super(1100, 600, 1); 
-        sonido = new GreenfootSound("fondo.mp3");
     }
       /**
      *Muestra las municiones en el mapa de forma aletoria y en cierto intervalo de tiempo. 
@@ -91,7 +90,7 @@ public class Mundos extends World
      */
     public void reproducirSonido()
     {
-        sonido.playLoop();
+        sonido.play();
     }
     /**
      *Metodo que detiene el sonido de fondo del juego 
@@ -105,9 +104,9 @@ public class Mundos extends World
         aparecerSobreviviente();
         mostrarMuniciones();
         //aparecerAyudas();
-        /*if(!sonido.isPlaying())
+        if(!sonido.isPlaying())
         {
             reproducirSonido();
-        }*/
+        }
     }
 }

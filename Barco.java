@@ -18,15 +18,20 @@ public class Barco extends Actor
     
     //Constante de velocidad.
     private  static final int VELOCIDAD=5;     
-    public Barco()
+    /**
+     *Metodo constructor de la clase Barco
+     *@param time Time determina el tiempo que tendra el barco para completar el nivel
+     *@param puntaje Puntaje determina el puntaje que tendra el barco al inicio de cada nivel
+     */
+    public Barco(int time,int puntaje)
     {
-       time = 40;
-       puntaje=0;
+       this.time = time;
+       this.puntaje=puntaje;
        sobrevivientes_rescatados=0;
        intervalo_tiempo=0;
     }
     /**
-     * Metodo encargado del movimiento del barco. 
+     * R02: Metodo encargado de la implementacion del requisito 2 
      */
     public void moverBarco()
     {
@@ -49,28 +54,32 @@ public class Barco extends Actor
         }
     }
     /**
-     * Metodo booleano que devuelve treu si la tecla "up" esta presionada,false de lo contrario. 
+     * Metodo booleano perteneciente al requisito 2
+     * @return Devuelve true si la tecla "up" esta presionada,false de lo contrario. 
      */
     public boolean estaPresionadaLaTeclaUp()
     {
         return Greenfoot.isKeyDown("up");
     }
     /**
-     *  Metodo booleano que devuelve true si la tecla "down" esta presionada,false de lo contario. 
+     * Metodo booleano perteneciente al requisito 2
+     * @return Devuelve true si la tecla "down" esta presionada,false de lo contrario. 
      */
     public boolean estaPresionadaLaTeclaDown()
     {
         return Greenfoot.isKeyDown("down");
     }
     /**
-     *  Metodo booleano que devuelve true si la tecla "right" esta presionada,false de lo contario 
+     * Metodo booleano perteneciente al requisito 2
+     * @return Devuelve true si la tecla "right" esta presionada,false de lo contrario. 
      */
     public boolean estaPresionadaLaTeclaRight()
     {
         return Greenfoot.isKeyDown("right");
     }
     /**
-     * Metodo booleano que devuelve true si la tecla "left" esta presionada, false de lo contario. 
+     * Metodo booleano perteneciente al requisito 2
+     * @return Devuelve true si la tecla "left" esta presionada,false de lo contrario. 
      */
     public boolean estaPresionadaLaTeclaLeft()
     {
@@ -79,6 +88,7 @@ public class Barco extends Actor
     
     /**
      * Metodo encargado de rotar y mover hacia delante el barco 
+     * @pre: Se debio haber presionado la tecla "up"
      */
     public void rotarYMoverAdelante()
     {
@@ -89,6 +99,7 @@ public class Barco extends Actor
     }
      /**
      * Metodo encargado de rotar y mover hacia atras al barco 
+     * @pre: Se debio haber presionado la tecla "down"
      */
     public void rotarYMoverAtras()
     {
@@ -99,6 +110,7 @@ public class Barco extends Actor
     }
      /**
      * Metodo encargado de rotar y mover hacia la derecha al barco 
+     * @pre: Se debio haber presionado la tecla "right"
      */
     public void rotarYMoverDerecha()
     {
@@ -110,6 +122,7 @@ public class Barco extends Actor
     
      /**
      * Metodo encargado de rotar y mover hacia la izquierda al barco 
+     * @pre: Se debio haber presionado la tecla "left"
      */
     public void rotarYMoverIzquierda()
     {
@@ -120,37 +133,36 @@ public class Barco extends Actor
     }
     
     /**
-     *  Rescata al sobreviviente del agua 
+     *  R3: Rescata al sobreviviente del agua 
      */
     public void rescatarSobreviviente()
     {
-        Actor persona = getOneObjectAtOffset(0,0,Sobrevivientes.class);
-        if(persona != null)
+        if(siEncontroUnSobreviviente())
         {
+            recogerSobreviviente();
+        }
+    }
+    /**
+     * Metodo booleano perteneciente al requisito 3
+     * @return Devuelve true si se encontro a un sobreviviente, false de lo contrario
+     */public boolean siEncontroUnSobreviviente()
+    {
+        Actor persona = getOneObjectAtOffset(0,0,Sobrevivientes.class);
+        return persona != null;
+    }
+    /**
+     *  Metodo que recoge al sobreviviente del agua y le suma 5 puntos al puntaje del barco
+     *  @pre El barco debe de haber encontrado un sobreviviente
+     */
+    public void recogerSobreviviente()
+    {
+            Actor persona = getOneObjectAtOffset(0,0,Sobrevivientes.class);
             getWorld().removeObject(persona);
             puntaje= puntaje+5;
-        }
     }
-    /*public void recogerRemos()
-    {
-        Actor remo = getOneObjectAtOffset(0,0,Remos.class);
-        if(remo != null)
-        {
-            getWorld().removeObject(remo);
-            time=time+5;
-        }
-    }*/
-    
-    /**
-     *  Metodo setter que se encarga de asignarle el puntaje al barco; 
-     */
-    public void setPuntaje(int puntaje)
-    {
-        this.puntaje=puntaje;        
-    }
-    
     /**
      * Metodo getter que devuelve un string con el puntaje del barco. 
+     * @return Devuelve String con el puntaje del barco
      */
     public String getPuntaje()
     {
@@ -210,6 +222,7 @@ public class Barco extends Actor
     }
     /**
      *  Metodo que devuelve true si el tiempo es igual a cero,false de lo contrario. 
+     *  @return Devuelve true si el tiempo es igual menor a cero,false de lo contrario
      */
     public boolean seAcaboElTiempo()
     {
@@ -229,7 +242,8 @@ public class Barco extends Actor
         }
     }
     /**
-     *  Metodo booleano que devuelve true si el puntaje del barco es igual a 40,false de lo contrario. 
+     *  Metodo que determina si el puntaje del barco es el suficiente para pasar.
+     *  @return Metodo que devuelve true si el puntaje del barco es igual a 40,false de lo contrario.
      */
     public boolean tieneParaPasarAlSegundoNivel()
     {
@@ -249,7 +263,8 @@ public class Barco extends Actor
         }
     }    
     /**
-     *  Metodo booleano que devuelve true si el puntaje del barco es igual a 100,false de lo contrario. 
+     *  Metodo que determina si el puntaje es suficiente para ganar el juego.
+     *  @return Devuelve true si el puntaje es igual 100,false de lo contrario
      */
     public boolean tieneParaGanarElJuego()
     {
@@ -258,6 +273,7 @@ public class Barco extends Actor
     
     /**
      *  Metodo que muestra los letreros del juego. 
+     *  @param l Parametro que determinara el letrero que se mostrara en el mundo
      */
     public void mostrarLetrero(Letreros l)
     {

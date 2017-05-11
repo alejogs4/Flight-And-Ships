@@ -17,12 +17,14 @@ public class Mar extends Mundos
     private int i;
     
 
-    private Barco barco = new Barco();
+    private Barco barco = new Barco(40,0);
+    /**
+     *  Constructor de la clase Mar 
+     */
     public Mar()
     {            
         setBackground("tile_73.png");
-        prepare();       
-        
+        prepare();               
     }
     /**
      * Prepare the world for the start of the program.
@@ -30,8 +32,6 @@ public class Mar extends Mundos
      */
     private void prepare()
     {
-
-        Barco barco = new Barco();
         addObject(barco,60,282);
         Avion avion = new Avion();
         addObject(avion,365,179);

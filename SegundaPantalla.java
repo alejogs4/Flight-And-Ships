@@ -8,16 +8,18 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class SegundaPantalla extends Mundos
 {
-    private Barco barco = new Barco();
+    private Barco barco = new Barco(40,45);
     Avion avion = new Avion();
     Avion avion2 = new Avion();
     Avion avion3 = new Avion();
     Avion avion4 = new Avion();
     Avion avion5 = new Avion();
+    /**
+     * Constructor de la clase SegundaPantalla
+     */
     public SegundaPantalla()
     {    
         prepare();   
-        barco.setPuntaje(45);
         avion.setMundo(1);
         avion2.setMundo(1);
         avion3.setMundo(1);
@@ -26,6 +28,9 @@ public class SegundaPantalla extends Mundos
         //municion.setMundo(1);
     }
     
+    /**
+     * Metodo que agrega objetos al mundo
+     */
     private void prepare()
     {        
         addObject(barco,60,282);        
