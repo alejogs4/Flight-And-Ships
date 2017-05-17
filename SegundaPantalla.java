@@ -15,7 +15,7 @@ public class SegundaPantalla extends Mundos
     Avion avion4 = new Avion();
     Avion avion5 = new Avion();
     /**
-     * Constructor de la clase SegundaPantalla
+     * Constructor de la clase SegundaPantalla.
      */
     public SegundaPantalla()
     {    
